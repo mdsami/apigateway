@@ -26,7 +26,7 @@ WORKDIR /var/www
 
 # # Install dependencies
 RUN apt-get update \
-     && apt-get install -y libzip-dev \
+     && apk add install -y libzip-dev \
      && docker-php-ext-install zip
 
 # Install extensions
