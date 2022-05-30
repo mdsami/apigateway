@@ -11,7 +11,7 @@ COPY . /var/www
 
 
 # Install composer
-RUN composer install
+# RUN composer install
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
