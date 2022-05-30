@@ -25,7 +25,7 @@ WORKDIR /var/www
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # # Install dependencies
-RUN apt-get update \
+RUN apk add --update \
      && apk add install -y libzip-dev \
      && docker-php-ext-install zip
 
