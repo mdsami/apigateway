@@ -1,28 +1,30 @@
-FROM php:8.0-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
 
 
 # Set working directory
-WORKDIR /var/www
 
-# # Install dependencies
-# RUN apt-get update && apt-get install -y \
-#     build-essential \
-#     libpng-dev \
-#     libjpeg62-turbo-dev \
-#     libfreetype6-dev \
-#     locales \
-#     zip \
-#     jpegoptim optipng pngquant gifsicle \
-#     vim \
-#     unzip \
-#     git \
-#     curl
 
-# Clear cache
-# RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+WORKDIR /var/www/html
+
+# Install dependencies
+RUN apk add --no-cache \
+    freetype \
+    libpng \
+    libjpeg-turbo \
+    freetype-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    && docker-php-ext-configure gd \
+    --with-freetype \
+    --with-jpeg \ 
+    && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
+    docker-php-ext-install -j${NPROC} gd && \
+    apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
+
+RUN docker-php-ext-install pdo pdo_mysql
 
 # # Install dependencies
 RUN apk add --update \
