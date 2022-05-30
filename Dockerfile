@@ -34,9 +34,9 @@ RUN apk add --no-cache \
 RUN docker-php-ext-install pdo pdo_mysql
 
 # # Install dependencies
-RUN apk add --update \
-     && apk add install -y libzip-dev \
-     && docker-php-ext-install zip
+# RUN apk add --update \
+#      && apk add install  libzip-dev \
+#      && docker-php-ext-install zip
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
