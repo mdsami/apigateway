@@ -25,7 +25,7 @@ services:
       - ./source:/var/www/html:delegated
     depends_on:
       - php
-      - mysql
+      - mariadb
     networks:
       - laravel
 
@@ -40,7 +40,7 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME} 
       MYSQL_PASSWORD: ${DB_PASSWORD} 
-      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: admin
       SERVICE_TAGS: dev
       SERVICE_NAME: mariadb
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
@@ -62,13 +62,13 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: admin
+      PMA_HOST: mariadb
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     restart: always
     depends_on:
-      - mysql
+      - mariadb
     ports:
     - "8081:80"
     volumes:
@@ -76,7 +76,7 @@ services:
     networks:
       - laravel
     links:
-      - mysql
+      - mariadb
 
   php:
     build:
@@ -123,7 +123,7 @@ services:
     volumes:
       - ./source:/var/www/html:delegated
     depends_on:
-      - mysql
+      - mariadb
     working_dir: /var/www/html
     user: laravel
     entrypoint: ['php', '/var/www/html/artisan']
