@@ -29,10 +29,10 @@ services:
     networks:
       - laravel
 
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
-    restart: unless-stopped
+  mariadb:
+    image: mariadb:10.4.13
+    container_name: mariadb
+    restart: always
     tty: true
     ports:
       - "3306:3306"
@@ -42,10 +42,10 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD} 
       MYSQL_ROOT_PASSWORD: secret
       SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      SERVICE_NAME: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
-      - ./compose/mysql/my.cnf:/etc/mysql/my.cnf
-      - dbdata:/var/lib/mysql/
+      - ${PWD}/mariadb/db/:/var/lib/mysql
     networks:
       - laravel
 
