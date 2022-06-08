@@ -31,14 +31,9 @@ $router->group(['middleware' => 'client_credentials'], function () use ($router)
      */
     Route::get('/nisc',[SiController::class,'index']);
 
-    /**
-     *  Books routes
-     */
-    // $router->get('books', ['as' => 'books.index', 'uses' => 'BookController@index']);
-    // $router->post('books', ['as' => 'books.store', 'uses' => 'BookController@store']);
-    // $router->get('books/{book}', ['as' => 'books.show', 'uses' => 'BookController@show']);
-    // $router->put('books/{book}', ['as' => 'books.update', 'uses' => 'BookController@update']);
-    // $router->delete('books/{book}', ['as' => 'books.destroy', 'uses' => 'BookController@destroy']);
+    Route::post('ubid',[SiController::class,'store']);
+
+
 
    
 });

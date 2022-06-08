@@ -52,7 +52,7 @@ class SiService
      */
     public function storeAuthor(array $request): \Illuminate\Http\Response
     {
-        return $this->httpService->performRequest($this->baseUri, "nisc", "POST", ["Authorization" => $this->secret], $request);
+        return $this->httpService->performRequest($this->baseUri, "ubid", "POST", ["Authorization" => $this->secret], $request);
     }
 
     /**

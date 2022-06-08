@@ -32,7 +32,8 @@ class SiController extends Controller
      */
     public function create()
     {
-        //
+
+
     }
 
     /**
@@ -43,7 +44,8 @@ class SiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                      //dd($request->all());
+        return $this->siService->storeAuthor($request->all());
     }
 
     /**
