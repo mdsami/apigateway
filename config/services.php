@@ -64,6 +64,11 @@ return [
         'secret' => env('GENERATOR_SERVICE_SECRET'),
     ],
 
+    'siservice' => [
+        'base_uri' => env('SI_SERVICE_BASE_URL'),
+        'secret' => env('SI_SERVICE_SECRET'),
+    ],
+
 
 
 ];

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\SiController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+$router->group(['middleware' => 'client.credentials'], function () use ($router) {
+    /**
+     *  SI Services routes
+     */
+    Route::get('/nisc',[SiController::class,'index']);
+
 });

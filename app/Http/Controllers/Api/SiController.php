@@ -4,17 +4,25 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\SiService;
 
 class SiController extends Controller
 {
+    public SiService $siService;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(SiService $siService)
+    {
+        $this->siService = $siService;
+    }
+
     public function index()
     {
-        //
+        return $this->siService->indexAuthors();
     }
 
     /**

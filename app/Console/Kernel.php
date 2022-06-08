@@ -29,4 +29,10 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    // protected $routeMiddleware = [
+    //     'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+    //     'client_credentials' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+    //     //ommited
+    // ];
 }
